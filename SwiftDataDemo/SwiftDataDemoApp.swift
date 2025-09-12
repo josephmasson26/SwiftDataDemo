@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+//import SwiftData
 
 @main
 struct SwiftDataDemoApp: App {
@@ -13,5 +14,7 @@ struct SwiftDataDemoApp: App {
         WindowGroup {
             ContentView()
         }
+//        .modelContainer(for: Note.self)
+        //automatic create underlying database file, then load in the future
     }
 }
