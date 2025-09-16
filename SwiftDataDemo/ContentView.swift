@@ -6,25 +6,34 @@
 //
 
 import SwiftUI
-//import SwiftData
 
 struct ContentView: View {
-//    @Environment(\.modelContext) var modelContext //allows us to directly modify database
-//    @Query var notes: [Note] //load from database file
-    
+
+    @State private var notes: [Note] = []
+
     var body: some View {
         NavigationView {
             VStack {
-                List(notes) {
-                    note in Text(note.title)
+                List(notes) { note in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(note.title)
+                            .font(.headline)
+                        Text(note.text)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    .listRowBackground(Color(.systemGray6))
                 }
+                .background(Color(.systemGray6))
                 .navigationTitle("List of Notes")
             }
             .toolbar {
                 Button("New Note") {
-                    let note = Note(id: UUID(), title: "NEW NOTE", text: "note text") //create new object
+                    let note = Note(id: UUID(), title: "Note \(Int.random(in: 1...100))",
+                        text: "This is note #\(Int.random(in: 1...1000))")
                     
-//                    modelContext.insert(note)
+                    
+                    notes.append(note)
                 }
             }
             .padding()
