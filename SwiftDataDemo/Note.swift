@@ -5,10 +5,11 @@
 //  Created by Joseph Masson on 9/12/25.
 //
 import SwiftUI
+import SwiftData
 
 
-@Observable public class Note: Identifiable {
-    public var id: UUID
+@Model class Note {
+    var id: UUID
     var title: String
     var text: String
 

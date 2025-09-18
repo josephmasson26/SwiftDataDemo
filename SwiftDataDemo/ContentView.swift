@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
 
-    @State private var notes: [Note] = []
+    @Query var notes: [Note]
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         NavigationView {
@@ -33,7 +35,7 @@ struct ContentView: View {
                         text: "This is note #\(Int.random(in: 1...1000))")
                     
                     
-                    notes.append(note)
+                    modelContext.insert(note)
                 }
             }
             .padding()
@@ -42,5 +44,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().modelContainer(for: Note.self, inMemory: true)
 }
